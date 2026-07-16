@@ -27,16 +27,22 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault()
-    const car = readCarFromForm()
-    if (editingId === null) {
-      await createCar(car)
-    } else {
-      await updateCar(editingId, car)
-      editingId = null
-    }
 
-    form.reset()
-    renderCars(await getCars())
+    try {
+      const car = readCarFromForm()
+      if (editingId === null) {
+        await createCar(car)
+      } else {
+        await updateCar(editingId, car)
+        editingId = null
+      }
+
+      form.reset()
+      renderCars(await getCars())
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error)
+      alert(`Save failed: ${message}`)
+    }
   })
 
   const list = document.querySelector("#car-list") as HTMLDivElement
