@@ -17,6 +17,15 @@ export async function createCar(car: ICar): Promise<void> {
   if (!response.ok) throw new Error(`Post failed: ${response.status}`)
 }
 
+export async function updateCar(id: number, car: ICar): Promise<void> {
+  const response = await fetch(`${API_URL}/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(car),
+  })
+  if (!response.ok) throw new Error(`PUT failed: ${response.status}`)
+}
+
 export async function deleteCar(id: number): Promise<void> {
   const response = await fetch(`${API_URL}/${id}`, {
     method: "DELETE",
