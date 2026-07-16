@@ -37,9 +37,23 @@ document.addEventListener("DOMContentLoaded", async () => {
   list.addEventListener("click", async (event) => {
     const target = event.target as HTMLElement
 
-    if (!target.classList.contains("delete-btn")) return
+    if (target.classList.contains("delete-btn")) {
+      await deleteCar(Number(target.dataset.id))
+      renderCars(await getCars())
+    }
 
-    await deleteCar(Number(target.dataset.id))
-    renderCars(await getCars())
+    if (target.classList.contains("edit-btn")) {
+      const id = Number(target.dataset.id)
+      console.log(`here ${id}`)
+      const car = (await getCars()).find((c) => c.id === id)
+      if (!car) return
+      ;(document.querySelector("#brand") as HTMLInputElement).value = car.brand
+      ;(document.querySelector("#model") as HTMLInputElement).value = car.model
+      ;(document.querySelector("#year") as HTMLInputElement).value = String(
+        car.year,
+      )
+      ;(document.querySelector("#color") as HTMLInputElement).value = car.color
+      editingId = id
+    }
   })
 })
