@@ -1,5 +1,5 @@
 import "./style.css"
-import { getCars } from "./api"
+import { getCars, createCar } from "./api"
 import { renderCars } from "./render"
 import type { ICar } from "./types"
 
@@ -19,6 +19,12 @@ function readCarFromForm(): ICar {
 
 document.addEventListener("DOMContentLoaded", async () => {
   const cars = await getCars()
-  console.log("Blep")
   renderCars(cars)
+
+  const form = document.querySelector("#car-form") as HTMLFormElement
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault()
+    await createCar(readCarFromForm())
+  })
 })

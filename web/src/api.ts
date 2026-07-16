@@ -7,3 +7,7 @@ export async function getCars(): Promise<ICar[]> {
   if (!response.ok) throw new Error(`GET filed: ${response.status}`)
   return await response.json()
 }
+
+export async function createCar(car: ICar): Promise<void> {
+  console.log("createCar stub", car)
+}
