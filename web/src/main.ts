@@ -1,5 +1,5 @@
 import "./style.css"
-import { getCars, createCar, deleteCar } from "./api"
+import { getCars, createCar, deleteCar, updateCar } from "./api"
 import { renderCars } from "./render"
 import type { ICar } from "./types"
 
@@ -27,7 +27,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault()
-    await createCar(readCarFromForm())
+    const car = readCarFromForm()
+    if (editingId === null) {
+      await createCar(car)
+    } else {
+      await updateCar(editingId, car)
+      editingId = null
+    }
+
     form.reset()
     renderCars(await getCars())
   })
