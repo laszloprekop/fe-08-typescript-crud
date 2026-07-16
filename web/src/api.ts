@@ -18,5 +18,9 @@ export async function createCar(car: ICar): Promise<void> {
 }
 
 export async function deleteCar(id: number): Promise<void> {
-  console.log("deleteCar stub:", id)
+  const response = await fetch(`${API_URL}/${id}`, {
+    method: "DELETE",
+  })
+
+  if (!response.ok) throw new Error(`DELETE failed: ${response.status}`)
 }
