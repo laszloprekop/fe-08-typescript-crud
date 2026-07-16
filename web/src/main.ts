@@ -1,5 +1,5 @@
 import "./style.css"
-import { getCars, createCar } from "./api"
+import { getCars, createCar, deleteCar } from "./api"
 import { renderCars } from "./render"
 import type { ICar } from "./types"
 
@@ -27,6 +27,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     event.preventDefault()
     await createCar(readCarFromForm())
     form.reset()
+    renderCars(await getCars())
+  })
+
+  const list = document.querySelector("#car-list") as HTMLDivElement
+
+  list.addEventListener("click", async (event) => {
+    const target = event.target as HTMLElement
+
+    if (!target.classList.contains("delete-btn")) return
+
+    await deleteCar(Number(target.dataset.id))
     renderCars(await getCars())
   })
 })

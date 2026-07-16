@@ -16,3 +16,7 @@ export async function createCar(car: ICar): Promise<void> {
   })
   if (!response.ok) throw new Error(`Post failed: ${response.status}`)
 }
+
+export async function deleteCar(id: number): Promise<void> {
+  console.log("deleteCar stub:", id)
+}
