@@ -9,5 +9,10 @@ export async function getCars(): Promise<ICar[]> {
 }
 
 export async function createCar(car: ICar): Promise<void> {
-  console.log("createCar stub", car)
+  const response = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(car),
+  })
+  if (!response.ok) throw new Error(`Post failed: ${response.status}`)
 }
