@@ -63,4 +63,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       editingId = id
     }
   })
+
+  const cancelBtn = document.querySelector("#cancel-btn") as HTMLButtonElement
+
+  cancelBtn.addEventListener("click", () => {
+    editingId = null
+    form.reset()
+  })
 })
