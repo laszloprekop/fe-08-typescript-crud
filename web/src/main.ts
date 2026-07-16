@@ -26,5 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   form.addEventListener("submit", async (event) => {
     event.preventDefault()
     await createCar(readCarFromForm())
+    form.reset()
+    renderCars(await getCars())
   })
 })
