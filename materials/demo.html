@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>TypeScript Intro & Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        h1 {
+            color: #007acc;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            color: #1e293b;
+            font-size: 1.3rem;
+            margin-top: 25px;
+            border-left: 4px solid #007acc;
+            padding-left: 10px;
+        }
+        .demo-box {
+            background-color: #f1f5f9;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00599c;
+        }
+        .console-output {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Consolas', 'Courier New', Courier, monospace;
+            padding: 15px;
+            border-radius: 6px;
+            min-height: 80px;
+            white-space: pre-wrap;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>TypeScript Live Demo (Föreläsningsmaterial)</h1>
+        <p>Det här dokumentet används för att demonstrera grundläggande koncept i TypeScript live på projektorn.</p>
+
+        <h2>Demo 1: Grundläggande typer & Funktioner</h2>
+        <div class="demo-box">
+            <p>Klicka på knappen för att köra en typad hälsningsfunktion i konsolen nedan.</p>
+            <button id="btn-greet">Kör hälsning</button>
+        </div>
+
+        <h2>Demo 2: Jobba med Interfaces (Objekt)</h2>
+        <div class="demo-box">
+            <p>Generera ett typat bilobjekt och logga det till skärmen.</p>
+            <button id="btn-car">Skapa bilobjekt</button>
+        </div>
+
+        <h2>Demo 3: DOM-casting (Hämta värden från HTML)</h2>
+        <div class="demo-box">
+            <div class="form-group">
+                <label for="demo-input">Skriv något här:</label>
+                <input type="text" id="demo-input" value="Hej från inputfältet!">
+            </div>
+            <button id="btn-read-input">Läs av värde typ-säkert</button>
+        </div>
+
+        <h2>Logg/Utmatning på skärmen:</h2>
+        <div id="screen-console" class="console-output">Här kommer loggar att visas när du klickar på knapparna...</div>
+    </div>
+
+    <script type="module" src="src/demo.ts"></script>
+</body>
+</html>
