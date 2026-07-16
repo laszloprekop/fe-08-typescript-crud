@@ -3,6 +3,8 @@ import { getCars, createCar, deleteCar } from "./api"
 import { renderCars } from "./render"
 import type { ICar } from "./types"
 
+let editingId: number | null = null
+
 function readCarFromForm(): ICar {
   const brand = document.querySelector("#brand") as HTMLInputElement
   const model = document.querySelector("#model") as HTMLInputElement

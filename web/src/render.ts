@@ -5,6 +5,7 @@ export function buildCarCard(car: ICar): string {
   <article>
     <h3>${car.brand} ${car.model}</h3>
     <p>${car.year} • ${car.color}</p>
+    <button class="edit-btn" data-id="${car.id}">Edit</button>
     <button class="delete-btn" data-id="${car.id}">Delete</button>
   </article>`
 }
