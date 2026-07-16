@@ -1,0 +1,64 @@
+# ---- OS ----
+.DS_Store
+.AppleDouble
+.LSOverride
+# Google Drive keeps creating custom folder-icon files. The real filename is
+# Icon + a carriage return, so a plain `Icon` line will NOT match it.
+# [[:cntrl:]] matches that trailing CR without the invisible-whitespace
+# fragility of the `Icon<CR><CR>` trick, and unlike `Icon?` it will not
+# swallow a real Icons/ folder. No slash => matches at any depth, forever.
+Icon[[:cntrl:]]
+._*
+Thumbs.db
+Desktop.ini
+
+# ---- IDE / Editors ----
+.idea/
+.vs/
+.vscode/
+*.swp
+*.user
+*.suo
+
+# ---- .NET / C# backend ----
+bin/
+obj/
+out/
+*.dll
+*.pdb
+*.cache
+project.lock.json
+appsettings.*.local.json
+*.DotSettings.user
+
+# ---- SQLite ----
+# cars.db is created and seeded from Program.cs on first run, so it is build
+# output, not source. -shm and -wal are the write-ahead log alongside it.
+*.db
+*.db-shm
+*.db-wal
+
+# ---- Node / Vite / TypeScript frontend ----
+node_modules/
+dist/
+build/
+.cache/
+coverage/
+.eslintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---- TypeScript build artefacts ----
+# Emitted by `tsc --build` / `tsc --noEmit` incremental mode. Vite projects
+# scaffold tsconfig.app.json + tsconfig.node.json, so expect several.
+*.tsbuildinfo
+
+# ---- Env / secrets ----
+.env
+.env.*
+!.env.example
+
+# ---- Planning docs, ignored for now ----
+Docs/untracked/
