@@ -1,3 +1,9 @@
 import "./style.css"
+import { getCars } from "./api"
+import { renderCars } from "./render"
 
-console.log("Cars app booting…")
+document.addEventListener("DOMContentLoaded", async () => {
+  const cars = await getCars()
+  console.log("Blep")
+  renderCars(cars)
+})

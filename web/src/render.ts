@@ -2,7 +2,7 @@ import type { ICar } from "./types"
 
 export function buildCarCard(car: ICar): string {
   return `<article><h3>${car.brand} ${car.model}</h3>
-  <p>${car.year} • ${car.color}</p><article>`
+  <p>${car.year} • ${car.color}</p></article>`
 }
 
 export function renderCars(cars: ICar[]): void {
