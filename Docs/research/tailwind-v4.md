@@ -308,7 +308,9 @@ a layered utility beats unlayered Pico:
 
 Measured identical in dev **and** prod: Pico's form/rhythm intact (`main` 80px,
 input 15px/62px, button `rgb(1,114,173)`), Tailwind correct (`p-4` 20px, `p-2`
-10px, `text-3xl` 37.5px, `font-bold` 700). Screenshot in the issue thread.
+10px, `text-3xl` 37.5px, `font-bold` 700), and confirmed visually in Chrome:
+Pico's form, buttons and headings render normally while the red/green probe
+elements carry Tailwind's utilities.
 
 **But weigh the cost before choosing gradual migration.** It buys a working app
 at every step, and it charges:
