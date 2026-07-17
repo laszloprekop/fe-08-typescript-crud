@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore;
 
@@ -20,6 +21,10 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// SPIKE: opt-in Minimal API validation (.NET 10)
+builder.Services.AddValidation();
+builder.Services.AddProblemDetails();
 
 // =========================================================
 // 2. Registrera databaskontexten (SQLite)
@@ -72,6 +77,7 @@ app.MapGet("/api/cars/{id:int}", async (int id, VehicleContext db) =>
 // CREATE (POST /api/cars) - Nivå 2
 app.MapPost("/api/cars", async (Car bil, VehicleContext db) =>
 {
+    bil.Id = 0; // SPIKE: ignore any client-supplied Id; let the DB assign it
     db.Cars.Add(bil);
     await db.SaveChangesAsync();
     return Results.Created($"/api/cars/{bil.Id}", bil);
@@ -115,12 +121,23 @@ class VehicleContext : DbContext
     public DbSet<Car> Cars => Set<Car>();
 }
 
-class Car
+public class Car
 {
     public int Id { get; set; }
+
+    [Required]
+    [StringLength(60, MinimumLength = 1)]
     public string Brand { get; set; } = string.Empty;
+
+    [Required]
+    [StringLength(60, MinimumLength = 1)]
     public string Model { get; set; } = string.Empty;
+
+    [Range(1886, 2100)]
     public int Year { get; set; }
+
+    [Required]
+    [StringLength(30, MinimumLength = 1)]
     public string Color { get; set; } = string.Empty;
 }
 #endregion
