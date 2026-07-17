@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Phosphor a11y spike</title>
+    <link rel="stylesheet" href="/src/style.css" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/@phosphor-icons/web/src/regular/style.css"
+    />
+  </head>
+  <body>
+    <!-- 1. Icon-only webfont button, NO aria anything. What name does it get?
+         The glyph is injected via `content:` on a :before pseudo-element, and
+         pseudo-element content participates in accessible name computation. -->
+    <button id="a1"><i class="ph ph-trash"></i></button>
+
+    <!-- 2. Icon-only webfont button, icon hidden, no label. -->
+    <button id="a2"><i class="ph ph-trash" aria-hidden="true"></i></button>
+
+    <!-- 3. Icon-only webfont button, icon hidden + aria-label. -->
+    <button id="a3" aria-label="Delete car">
+      <i class="ph ph-trash" aria-hidden="true"></i>
+    </button>
+
+    <!-- 4. Webfont icon + VISIBLE text label, icon hidden, no aria-label. -->
+    <button id="a4">
+      <i class="ph ph-trash" aria-hidden="true"></i> Delete
+    </button>
+
+    <!-- 5. Webfont icon + visible text, NOT hidden. Does the glyph pollute? -->
+    <button id="a5"><i class="ph ph-trash"></i> Delete</button>
+
+    <!-- 6. Icon-only SVG button, no aria anything. -->
+    <button id="a6">
+      <svg class="size-4" viewBox="0 0 256 256" fill="currentColor">
+        <path d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16Z" />
+      </svg>
+    </button>
+
+    <!-- 7. Icon-only SVG button, aria-hidden icon + aria-label on button. -->
+    <button id="a7" aria-label="Delete car">
+      <svg class="size-4" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
+        <path d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16Z" />
+      </svg>
+    </button>
+
+    <!-- 8. SVG + visible text, icon hidden. -->
+    <button id="a8">
+      <svg class="size-4" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
+        <path d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16Z" />
+      </svg>
+      Delete
+    </button>
+
+    <!-- 9. The trap: visible text "Delete" but aria-label says something else.
+         Voice-control users say "click Delete" and it must match. -->
+    <button id="a9" aria-label="Remove vehicle from collection">
+      <i class="ph ph-trash" aria-hidden="true"></i> Delete
+    </button>
+  </body>
+</html>

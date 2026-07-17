@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Phosphor spike</title>
+    <link rel="stylesheet" href="/src/style.css" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/@phosphor-icons/web/src/regular/style.css"
+    />
+  </head>
+  <body>
+    <!-- ROUTE A: webfont icon, styled with Tailwind utilities (size-4) -->
+    <button id="font-btn" class="inline-flex items-center gap-2">
+      <i id="font-icon" class="ph ph-trash size-4 text-red-600"></i>
+      Delete
+    </button>
+
+    <!-- ROUTE A': webfont icon sized the way a font must be sized (font-size) -->
+    <button id="font-btn2" class="inline-flex items-center gap-2">
+      <i id="font-icon2" class="ph ph-trash text-base text-red-600"></i>
+      Delete
+    </button>
+
+    <!-- ROUTE A'': webfont icon at size-8 — does the GLYPH scale, or just the box? -->
+    <button id="font-btn3" class="inline-flex items-center gap-2">
+      <i id="font-icon3" class="ph ph-trash size-8 text-red-600"></i>
+      Delete
+    </button>
+
+    <!-- ROUTE A''': webfont icon at text-3xl — the font's own sizing lever -->
+    <button id="font-btn4" class="inline-flex items-center gap-2">
+      <i id="font-icon4" class="ph ph-trash text-3xl text-red-600"></i>
+      Delete
+    </button>
+
+    <!-- ROUTE B'': inlined SVG at size-8 — does the glyph scale? -->
+    <button id="svg-btn3" class="inline-flex items-center gap-2">
+      <svg
+        id="svg-icon3"
+        class="size-8 text-red-600"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 256 256"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"
+        />
+      </svg>
+      Delete
+    </button>
+
+    <!-- ROUTE B: inlined SVG, styled with Tailwind utilities -->
+    <button id="svg-btn" class="inline-flex items-center gap-2">
+      <svg
+        id="svg-icon"
+        class="size-4 text-red-600"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 256 256"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"
+        />
+      </svg>
+      Delete
+    </button>
+  </body>
+</html>
