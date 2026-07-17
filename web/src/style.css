@@ -1,3 +1,21 @@
+@import "tailwindcss" important;
+
+/* SPIKE H: Pico v1 and Tailwind v4 both define `--spacing` on :root, with
+   different scales (Pico 1rem, Tailwind 0.25rem). Pico's <link> is unlayered
+   so it beats Tailwind's @theme, and every Tailwind spacing utility silently
+   comes out 4x too big. Reclaim it here (unlayered beats every layer), then
+   hand Pico back the block rhythm it derived from it. */
+:root {
+  --spacing: 0.25rem;
+}
+
+body > main,
+section,
+article {
+  --block-spacing-vertical: 4rem;
+  --block-spacing-horizontal: 2rem;
+}
+
 /* Pico v1's primary (#1095c1) is only 3.44:1 against the white text it puts on
    top of it — under WCAG AA's 4.5:1. Pico's own blue-550 clears it at 5.23:1.
    All three of Pico's themes declare the same primary, so all three need it.
