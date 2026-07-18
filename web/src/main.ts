@@ -2,6 +2,7 @@ import "./style.css"
 import { getCars, createCar, deleteCar, updateCar } from "./api"
 import { renderCars } from "./render"
 import { randomCar } from "./catalog"
+import { showToast } from "./toast"
 import type { ICar } from "./types"
 
 let editingId: number | null = null
@@ -21,8 +22,11 @@ function readCarFromForm(): ICar {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const cars = await getCars()
-  renderCars(cars)
+  try {
+    renderCars(await getCars())
+  } catch (error) {
+    showToast("Could not reach the server - is the API running?", "bad")
+  }
 
   const themeBtn = document.querySelector("#theme-btn") as HTMLButtonElement
   themeBtn.addEventListener("click", () => {
@@ -36,6 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     event.preventDefault()
 
     try {
+      const wasEditing = editingId !== null
       const car = readCarFromForm()
       if (editingId === null) {
         await createCar(car)
@@ -43,12 +48,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         await updateCar(editingId, car)
         editingId = null
       }
-
       form.reset()
       renderCars(await getCars())
+      showToast(wasEditing ? "Car updated" : "Car saved", "good")
     } catch (error: unknown) {
-      const message = error instanceof Error ? error.message : String(error)
-      alert(`Save failed: ${message}`)
+      showToast("The server rejected that - check your entries.", "bad")
     }
   })
 
@@ -59,8 +63,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const deleteBtn = target.closest(".delete-btn") as HTMLButtonElement | null
     if (deleteBtn) {
-      await deleteCar(Number(deleteBtn.dataset.id))
-      renderCars(await getCars())
+      try {
+        await deleteCar(Number(deleteBtn.dataset.id))
+        renderCars(await getCars())
+        showToast("Car deleted", "good")
+      } catch (error: unknown) {
+        showToast("Could not delete that car - is the API running?", "bad")
+      }
     }
 
     const editBtn = target.closest(".edit-btn") as HTMLButtonElement | null

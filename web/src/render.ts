@@ -68,7 +68,7 @@ export function buildCarCard(car: ICar): string {
           <svg class="size-[17px]" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"/></svg>
         </button>
       </div>
-      <div class="plate relative z-[2] p-[18px] [text-shadow:0_1px_3px_rgb(0_0_0/0.45)]">
+      <div class="plate relative z-[2] p-[18px] [text-shadow:0_1px_3px_rgb(0_0_0/_0.45)]">
         <div class="text-[26px] font-extrabold leading-[1.08] tracking-tight text-balance">${label}</div>
         <div class="mt-1.5 font-mono text-xs uppercase tracking-[0.1em] opacity-90">${escapeHtml(car.color)}</div>
       </div>
