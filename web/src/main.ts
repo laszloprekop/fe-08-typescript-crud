@@ -23,6 +23,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   const cars = await getCars()
   renderCars(cars)
 
+  const themeBtn = document.querySelector("#theme-btn") as HTMLButtonElement
+  themeBtn.addEventListener("click", () => {
+    const dark = document.documentElement.getAttribute("data-theme") === "dark"
+    document.documentElement.setAttribute("data-theme", dark ? "light" : "dark")
+  })
+
   const form = document.querySelector("#car-form") as HTMLFormElement
 
   form.addEventListener("submit", async (event) => {

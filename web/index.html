@@ -10,33 +10,54 @@
 </head>
 
 <body>
-  <main class="container">
-    <h1>Roger's Retro Cars</h1>
-
-    <form id="car-form" aria-label="Add or edit a car">
-      <div class="grid">
-        <label for="brand">Brand
-          <input type="text" id="brand" name="brand" placeholder="Volvo" required>
-        </label>
-        <label for="model">Model
-          <input type="text" id="model" name="model" placeholder="240" required>
-        </label>
+  <div class="mx-auto max-w-[1180px] px-6 pb-20 pt-8">
+    <header class="mb-7 flex flex-wrap items-end justify-between gap-4">
+      <div class="flex flex-col gap-1.5">
+        <h1 class="m-0 font-mono text-[clamp(28px,5vw,46px)] font-bold uppercase leading-none tracking[0.12em]">Roger's
+          Retro Garage<span class="text-accent">.</span></h1>
+        <span id="count" class="font-mono text-[12.5px] uppercase tracking-[0.06em text-ink-soft]">0 cars</span>
       </div>
-      <div class="grid">
-        <label for="year">Year
-          <input type="number" id="year" name="year" placeholder="1988" required>
-        </label>
-        <label for="color">Color
-          <input type="text" id="color" name="color" placeholder="Red" required>
-        </label>
-      </div>
-      <button type="submit" id="submit-btn">Save Car</button>
-      <button type="button" id="cancel-btn">Cancel</button>
-    </form>
+      <button id="theme-btn" class="grid size-10 place-items-center border border-line text-ink hover:bg-ink/5"
+        aria-label="Switch theme" title="Switch light / dark">◐</button>
+    </header>
 
-    <h2>The collection</h2>
-    <div id="car-list" aria-live="polite"></div>
-  </main>
+    <div id="form-panel"
+      class="mb-7 border border-line bg-panel shadow-[0_1px_2px_rgb(0_0_0/0.06),0_8px_24px_rgb(0_0_0/0.09)]">
+      <div class="p-[22px]">
+        <h2 id="form-head" class="mb-4 text-xl font-bold tracking-tight text-ink">Add a car</h2>
+        <form id="car-form" novalidate aria-labelledby="form-head">
+          <div class="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+            <label class="flex flex-col gap-1.5 text-[12.5px] font-semibold text-ink-soft uppercase">Brand
+              <input id="brand" name="brand" type="text" required maxlength="50" placeholder="Volvo"
+                class="border border-line bg-ground px-3 py-2.5 text-[15px] text-ink placeholder:text-ink-soft focus:outline-none focus:ring-1 focus:ring-accent">
+            </label>
+            <label class="flex flex-col gap-1.5 text-[12.5px] font-semibold text-ink-soft">Model
+              <input id="model" name="model" type="text" required maxlength="50" placeholder="244 GL"
+                class="border border-line bg-ground px-3 py-2.5 text-[15px] text-ink placeholder:text-ink-soft focus:outline-none focus:ring-1 focus:ring-accent"></label>
+            <label class="flex flex-col gap-1.5 text-[12.5px] font-semibold text-ink-soft uppercase">Year
+              <input id="year" name="year" type="number" required min="1886" placeholder="1978"
+                class="border border-line bg-ground px-3 py-2.5 text-[15px] text-ink placeholder:text-ink-soft focus:outline-none focus:ring-1 focus:ring-accent">
+            </label>
+            <label class="flex flex-col gap-1.5 text-[12.5px] font-semibold text-ink-soft uppercase">Color
+              <input id="color" name="color" type="text" maxlength="50" placeholder="Blue"
+                class="border border-line bg-ground px-3 py-2.5 text-[15px] text-ink placeholder:text-ink-soft focus:outline-none focus:ring-1 focus:ring-accent">
+            </label>
+          </div>
+          <div class="mt-5 flex justify-end gap-2.5">
+            <button type="submit" id="submit-btn"
+              class="bg-accent px-4 py-2.5 text-sm font-semibold text-accent-ink hover:brightness-105">Save Car</button>
+            <button type="button" id="cancel-btn"
+              class="border border-line px-4 py-2.5 text-sm font-semibold text-ink hover:bg-ink/5">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <div id="car-list" class="grid grid-cols-[repeat(auto-fill,minmax(2480px,1fr))] gap-0" aria-live="polite">
+    </div>
+  </div>
+
   <script type="module" src="/src/main.ts"></script>
 </body>
 
