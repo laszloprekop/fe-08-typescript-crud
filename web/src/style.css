@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 /* Pico v1's primary (#1095c1) is only 3.44:1 against the white text it puts on
    top of it — under WCAG AA's 4.5:1. Pico's own blue-550 clears it at 5.23:1.
    All three of Pico's themes declare the same primary, so all three need it.
