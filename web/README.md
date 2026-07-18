@@ -1,6 +1,6 @@
 # Roger's Retro Cars — Frontend (TypeScript)
 
-![Roger's Retro Cars — the car collection as a gapless mosaic of generated colour tiles, in dark theme](../Docs/screenshot-phase3.png)
+![Roger's Retro Cars in use — adding a car and being stopped by year validation, correcting it, generating a random car, editing a card in place, deleting one behind an inline confirmation, and switching to dark theme](../Docs/demo-600.gif)
 
 A full-CRUD single-page app for managing a collection of classic cars, built in
 **TypeScript** with **Vite**. This is the frontend half of the exercise; it talks
