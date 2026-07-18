@@ -1,6 +1,6 @@
 # Roger's Retro Cars — Frontend (TypeScript)
 
-![Roger's Retro Cars — the car collection with add/edit form](../Docs/screenshot-phase1-2.png)
+![Roger's Retro Cars — the car collection as a gapless mosaic of generated colour tiles, in dark theme](../Docs/screenshot-phase3.png)
 
 A full-CRUD single-page app for managing a collection of classic cars, built in
 **TypeScript** with **Vite**. This is the frontend half of the exercise; it talks
@@ -23,7 +23,7 @@ handout's three tasks:
 
 - **TypeScript** — the whole point of the exercise
 - **Vite** — dev server and build tool
-- **[Pico.css](https://picocss.com/) v1** (via CDN) — classless styling, kept out of the build graph
+- **[Tailwind CSS](https://tailwindcss.com/) v4** — via the Vite plugin, configured in CSS with OKLCH design tokens
 - **pnpm** — package manager
 - Plain `fetch` against the backend — no framework, no client library
 
@@ -62,5 +62,5 @@ web/
     ├── api.ts        getCars / createCar / updateCar / deleteCar
     ├── types.ts      interface ICar
     ├── render.ts     DOM layer: buildCarCard, renderCars (HTML-escaped)
-    └── style.css     A few Pico overrides
+    └── style.css     Tailwind import, OKLCH design tokens, dark theme
 ```
