@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore;
+using System.ComponentModel.DataAnnotations;
 
 var builder = WebApplication.CreateBuilder(args);
 // =========================================================
@@ -20,6 +21,8 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddValidation();
+builder.Services.AddProblemDetails();
 
 // =========================================================
 // 2. Registrera databaskontexten (SQLite)
@@ -72,6 +75,7 @@ app.MapGet("/api/cars/{id:int}", async (int id, VehicleContext db) =>
 // CREATE (POST /api/cars) - Nivå 2
 app.MapPost("/api/cars", async (Car bil, VehicleContext db) =>
 {
+    bil.Id = 0; // the client never chooses a primary key, the database does that
     db.Cars.Add(bil);
     await db.SaveChangesAsync();
     return Results.Created($"/api/cars/{bil.Id}", bil);
@@ -115,12 +119,22 @@ class VehicleContext : DbContext
     public DbSet<Car> Cars => Set<Car>();
 }
 
-class Car
+public class Car
 {
     public int Id { get; set; }
+
+    [Required]
+    [StringLength(50, MinimumLength = 1, ErrorMessage = "Brand must be between 1 and 50 characters.")]
     public string Brand { get; set; } = string.Empty;
+    [Required]
+    [StringLength(50, MinimumLength = 1, ErrorMessage = "Model must be between 1 and 50 characters.")]
     public string Model { get; set; } = string.Empty;
+
+    [Range(1886, 2100, ErrorMessage = "Year must be between 1886 and next year.")]
     public int Year { get; set; }
+
+    [Required]
+    [StringLength(50, MinimumLength = 1, ErrorMessage = "Color must be between 1 and 50 characters.")]
     public string Color { get; set; } = string.Empty;
 }
 #endregion
