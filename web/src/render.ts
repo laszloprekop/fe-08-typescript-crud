@@ -59,7 +59,15 @@ export function buildCarCard(car: ICar): string {
              aria-label="${label}, ${escapeHtml(car.year)}, ${escapeHtml(car.color)}">
       <div class="car-ghost"></div>
       <span class="year-tab absolute left-3.5 top-3.5 z-[3] bg-black/40 px-2.5 py-1 font-mono text-xs font-bold tracking-wide text-white backdrop-blur-sm">${escapeHtml(car.year)}</span>
-      
+
+      <div class="tools absolute right-3 top-3 z-[3] flex gap-1.5 opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
+        <button class="edit-btn grid size-[34px] place-items-center bg-black/50 text-white backdrop-blur-sm transition-colors hover:bg-accent hover:text-accent-ink" data-id="${escapeHtml(car.id)}" aria-label="Edit ${label}">
+          <svg class="size-[17px]" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.68,147.31,64l24-24L216,84.68Z"/></svg>
+        </button>
+        <button class="delete-btn grid size-[34px] place-items-center bg-black/50 text-white backdrop-blur-sm transition-colors hover:bg-accent hover:text-accent-ink" data-id="${escapeHtml(car.id)}" aria-label="Delete ${label}">
+          <svg class="size-[17px]" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"/></svg>
+        </button>
+      </div>
       <div class="plate relative z-[2] p-[18px] [text-shadow:0_1px_3px_rgb(0_0_0/0.45)]">
         <div class="text-[26px] font-extrabold leading-[1.08] tracking-tight text-balance">${label}</div>
         <div class="mt-1.5 font-mono text-xs uppercase tracking-[0.1em] opacity-90">${escapeHtml(car.color)}</div>
