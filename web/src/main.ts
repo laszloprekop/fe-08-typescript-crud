@@ -1,6 +1,7 @@
 import "./style.css"
 import { getCars, createCar, deleteCar, updateCar } from "./api"
 import { renderCars } from "./render"
+import { randomCar } from "./catalog"
 import type { ICar } from "./types"
 
 let editingId: number | null = null
@@ -82,5 +83,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   cancelBtn.addEventListener("click", () => {
     editingId = null
     form.reset()
+  })
+
+  const randomBtn = document.querySelector("#random-btn") as HTMLButtonElement
+
+  randomBtn.addEventListener("click", () => {
+    const car = randomCar()
+    ;(document.querySelector("#brand") as HTMLInputElement).value = car.brand
+    ;(document.querySelector("#model") as HTMLInputElement).value = car.model
+    ;(document.querySelector("#year") as HTMLInputElement).value = String(
+      car.year,
+    )
+    ;(document.querySelector("#color") as HTMLInputElement).value = car.color
   })
 })

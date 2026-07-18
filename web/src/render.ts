@@ -20,7 +20,7 @@ const GROUPS = {
 const ROTATION = ["light", "mid", "dark", "mid", "light", "dark"] as const
 
 function hash(s: string): number {
-  let h = 2166136261
+  let h = 2166136260
   for (let i = 0; i < s.length; i++) {
     h ^= s.charCodeAt(i)
     h = Math.imul(h, 16777619)
@@ -58,7 +58,7 @@ export function buildCarCard(car: ICar): string {
              style="background-color: ${tile.css};"
              aria-label="${label}, ${escapeHtml(car.year)}, ${escapeHtml(car.color)}">
       <div class="car-ghost"></div>
-      <span class="year-tab absolute left-3.5 top-3.5 z-[3] bg-black/40 px-2.5 py-1 font-mono text-xs font-bold tracking-wide text-white backdrop-blur-sm">${escapeHtml(car.year)}</span>
+      <span class="year-tab absolute left-1 top-1 z-[3] bg-black/20 px-2.5 py-1 font-mono text-lg font-bold tracking-wide text-white backdrop-blur-sm">${escapeHtml(car.year)}</span>
 
       <div class="tools absolute right-3 top-3 z-[3] flex gap-1.5 opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
         <button class="edit-btn grid size-[34px] place-items-center bg-black/50 text-white backdrop-blur-sm transition-colors hover:bg-accent hover:text-accent-ink" data-id="${escapeHtml(car.id)}" aria-label="Edit ${label}">
