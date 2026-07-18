@@ -7,6 +7,7 @@ import type { ICar } from "./types"
 import { validateCar } from "./validate"
 
 let editingId: number | null = null
+let confirmingId: number | null = null
 
 function readCarFromForm(): ICar {
   const brand = document.querySelector("#brand") as HTMLInputElement
@@ -75,20 +76,30 @@ document.addEventListener("DOMContentLoaded", async () => {
   list.addEventListener("click", async (event) => {
     const target = event.target as HTMLElement
 
-    const deleteBtn = target.closest(".delete-btn") as HTMLButtonElement | null
-    if (deleteBtn) {
+    const card = target.closest(".card") as HTMLElement | null
+    if (!card) return
+    const id = Number(card.dataset.id)
+
+    if (target.closest(".delete-btn")) {
+      confirmingId = id
+      renderCars(await getCars(), confirmingId)
+    } else if (target.closest(".cancel-delete-btn")) {
+      confirmingId = null
+      renderCars(await getCars(), confirmingId)
+    } else if (target.closest(".confirm-delete-btn")) {
       try {
-        await deleteCar(Number(deleteBtn.dataset.id))
-        renderCars(await getCars())
+        await deleteCar(id)
+        if (editingId === id) {
+          editingId = null
+          form.reset()
+        }
+        confirmingId = null
+        renderCars(await getCars(), confirmingId)
         showToast("Car deleted", "good")
       } catch (error: unknown) {
         showToast("Could not delete that car - is the API running?", "bad")
       }
-    }
-
-    const editBtn = target.closest(".edit-btn") as HTMLButtonElement | null
-    if (editBtn) {
-      const id = Number(editBtn.dataset.id)
+    } else if (target.closest(".edit-btn")) {
       const car = (await getCars()).find((c) => c.id === id)
       if (!car) return
       ;(document.querySelector("#brand") as HTMLInputElement).value = car.brand
@@ -98,6 +109,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       )
       ;(document.querySelector("#color") as HTMLInputElement).value = car.color
       editingId = id
+    }
+  })
+
+  document.addEventListener("keydown", async (event) => {
+    if (event.key === "Escape" && confirmingId !== null) {
+      confirmingId = null
+      renderCars(await getCars(), confirmingId)
     }
   })
 

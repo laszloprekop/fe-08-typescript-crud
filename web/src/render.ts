@@ -48,12 +48,12 @@ export function paintFor(car: ICar): { css: string; light: boolean } {
   }
 }
 
-export function buildCarCard(car: ICar): string {
+export function buildCarCard(car: ICar, isConfirming = false): string {
   const tile = paintFor(car)
   const label = `${escapeHtml(car.brand)} ${escapeHtml(car.model)}`
 
   return `
-    <article class="card group relative flex min-h-[320px] flex-col justify-end overflow-hidden text-white [isolation:isolate]"
+    <article class='card group relative flex min-h-[320px] flex-col justify-end overflow-hidden text-white [isolation:isolate] ${isConfirming ? "confirming" : ""}'
              data-id="${escapeHtml(car.id)}"
              style="background-color: ${tile.css};"
              aria-label="${label}, ${escapeHtml(car.year)}, ${escapeHtml(car.color)}">
@@ -72,12 +72,22 @@ export function buildCarCard(car: ICar): string {
         <div class="text-[26px] font-extrabold leading-[1.08] tracking-tight text-balance">${label}</div>
         <div class="mt-1.5 font-mono text-xs uppercase tracking-[0.1em] opacity-90">${escapeHtml(car.color)}</div>
       </div>
+      <div class="confirm absolute inset-x-0 bottom-0 z-[4] hidden items-center gap-2 px-3.5 py-3 text-white [background:color-mix(in_srgb,var(--color-danger)_92%,black)]">
+        <span class="mr-auto text-[13px] font-semibold">Delete this car?</span>
+        <button class="cancel-delete-btn px-3 py-1.5 text-[13px] font-bold bg-white/20 text-white hover:bg-white/30" data-id="${escapeHtml(car.id)}">Cancel</button>
+        <button class="confirm-delete-btn px-3 py-1.5 text-[13px] font-bold bg-white text-danger" data-id="${escapeHtml(car.id)}">Delete</button>
+    </div>
     </article>`
 }
 
-export function renderCars(cars: ICar[]): void {
+export function renderCars(
+  cars: ICar[],
+  confirmingId: number | null = null,
+): void {
   const list = document.querySelector("#car-list") as HTMLDivElement
   const count = document.querySelector("#count") as HTMLSpanElement
   count.textContent = `${String(cars.length)} ${cars.length === 1 ? "car" : "cars"} in the collection`
-  list.innerHTML = cars.map(buildCarCard).join("")
+  list.innerHTML = cars
+    .map((c) => buildCarCard(c, c.id === confirmingId))
+    .join("")
 }
