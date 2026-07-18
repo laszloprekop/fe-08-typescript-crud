@@ -1,1 +1,49 @@
 @import "tailwindcss";
+
+@theme {
+  --color-ground: oklch(0.93 0.02 104.16); /* warm paper */
+  --color-panel: oklch(0.95 0.02 100.45); /* raised surface */
+  --color-line: oklch(0.86 0.02 99.5);
+  --color-ink: oklch(0.21 0.02 237.9); /* near-black, blue-biased */
+  --color-ink-soft: oklch(0.5 0.02 235);
+  --color-accent: oklch(0.31 0.03 231.05); /* deep teal — primary actions */
+  --color-accent-ink: oklch(0.98 0.01 100);
+  --color-danger: oklch(0.5 0.16 27);
+  --color-good: oklch(0.52 0.08 162);
+
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono:
+    ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-ground: oklch(0.21 0.02 237.9);
+    --color-panel: oklch(0.27 0.03 230);
+    --color-line: oklch(0.33 0.03 231);
+    --color-ink: oklch(0.95 0.02 100.45);
+    --color-ink-soft: oklch(0.67 0.03 94.99);
+    --color-accent: oklch(0.6 0.07 205);
+    --color-accent-ink: oklch(0.16 0.02 238);
+    --color-danger: oklch(0.62 0.15 28);
+    --color-good: oklch(0.62 0.08 162);
+  }
+}
+[data-theme="dark"] {
+  --color-ground: oklch(0.21 0.02 237.9);
+  --color-panel: oklch(0.27 0.03 230);
+  --color-line: oklch(0.33 0.03 231);
+  --color-ink: oklch(0.95 0.02 100.45);
+  --color-ink-soft: oklch(0.67 0.03 94.99);
+  --color-accent: oklch(0.6 0.07 205);
+  --color-accent-ink: oklch(0.16 0.02 238);
+  --color-danger: oklch(0.62 0.15 28);
+  --color-good: oklch(0.62 0.08 162);
+}
+
+body {
+  background: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
