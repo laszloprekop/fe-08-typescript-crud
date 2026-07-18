@@ -83,3 +83,9 @@ body {
     transform: translateY(8px);
   }
 }
+
+input.bad {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 3px
+    color-mix(in oklch, var(--color-danger) 22%, transparent);
+}

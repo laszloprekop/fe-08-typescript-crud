@@ -4,6 +4,7 @@ import { renderCars } from "./render"
 import { randomCar } from "./catalog"
 import { showToast } from "./toast"
 import type { ICar } from "./types"
+import { validateCar } from "./validate"
 
 let editingId: number | null = null
 
@@ -42,6 +43,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       const wasEditing = editingId !== null
       const car = readCarFromForm()
+      const errors = validateCar(car)
+      ;(["brand", "model", "year", "color"] as const).forEach((f) => {
+        ;(document.querySelector(`#${f}`) as HTMLInputElement).classList.toggle(
+          "bad",
+          f in errors,
+        )
+      })
+      const firstError = Object.values(errors)[0]
+      if (firstError) {
+        showToast(firstError, "bad")
+        return
+      }
+
       if (editingId === null) {
         await createCar(car)
       } else {
